@@ -3,11 +3,11 @@ from Modules import *
 # #chromedriver 경로 설정
 # chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument('--start-maximized')
-driver = webdriver.Chrome(ChromeDriverManager().install())
-print('로그인 테스트 시작!')
 
 class TC_login_Class():
-    def def_login(self):
+    def LoginDef():
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        print('로그인 테스트 시작!')
         driver.get(settings.loginurl)
         try:
             driver.find_element(By.NAME, 'email').send_keys(settings.consoleid)
@@ -30,12 +30,8 @@ class TC_login_Class():
             driver.quit()
             print('로그인 테스트 종료!')
 
-
-            
-
-
-loginTest = TC_login_Class()
-loginTest.def_login()
+# loginTest = TC_login_Class()
+# loginTest.def_login()
 
 
 

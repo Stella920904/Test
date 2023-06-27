@@ -3,10 +3,11 @@ from Modules import *
 # #chromedriver 경로 설정
 # chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument('--start-maximized')
-driver = webdriver.Chrome(ChromeDriverManager().install())
+
 
 class CommonloginClass():
-    def CommonloginDef(self):
+    def CommonLoginDef(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get(settings.loginurl)
         try:
             driver.find_element(By.NAME, 'email').send_keys(settings.consoleid)
@@ -22,9 +23,10 @@ class CommonloginClass():
         #         settings.FailCount = settings.FailCount + 1
         except:
             print('요소를 찾을 수 없어 로그인 실패')
+         
 
     # print("PassCount :", settings.Passcount)
     # print("FailCount :", settings.FailCount)
 
-CommonloginClassGo = CommonloginClass()
-CommonloginClassGo.CommonloginDef()
+# CommonloginClassGo = CommonloginClass()
+# CommonloginClassGo.CommonloginDef()
