@@ -1,7 +1,7 @@
 class Settings:
 
     #login info
-    consoleid = 'auto_kade3@stclab.com'
+    console_id = 'auto_kade004@stclab.com'
     password = 'qwe123!!'
 
     # PASS / FAIL count info
@@ -30,3 +30,6 @@ class Settings:
 
     #N번째 회원가입 
     num = 3
+
+    #회원가입
+         

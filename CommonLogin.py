@@ -1,15 +1,15 @@
 from Modules import *
 from GetDriver import driver
 # #chromedriver 경로 설정
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument('--start-maximized')
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--start-maximized')
 
 
 class CommonloginClass():
-    def CommonLoginDef(self):
-        driver.get(Settings.loginurl)
+    def commonlogin_def(self):
+        driver.get(Settings.loginURL)
         try:
-            driver.find_element(By.NAME, 'email').send_keys(Settings.consoleid)
+            driver.find_element(By.NAME, 'email').send_keys(Settings.console_id)
             driver.find_element(By.NAME, 'password').send_keys(Settings.password)
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()
             time.sleep(5)

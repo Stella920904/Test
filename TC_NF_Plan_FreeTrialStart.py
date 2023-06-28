@@ -11,7 +11,7 @@ class TC_NF_Plan_FreeTrialStart_Class():
     #FreeTrial 테스트 시작
         print("FreeTrial 테스트 시작!")
         CommonLoginTest = CommonloginClass()
-        CommonLoginTest.CommonLoginDef()
+        CommonLoginTest.commonlogin_def()
         try:
             # Free Trial 시작하기
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]/button').click()

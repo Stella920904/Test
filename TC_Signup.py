@@ -1,6 +1,5 @@
 from Modules import *
-
-# 테스트계정 입력
+from GetDriver import driver
 
 #chromedriver 경로 설정
 # chrome_options = Options()
@@ -10,9 +9,8 @@ from Modules import *
 
 class TC_Signup_Class():
     def signup_def():
-        driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver.get(Settings.signupurl)
-        account = input("회원가입 할 테스트 계정을 입력해 주세요 : ")                                                                                                 
+        driver.get(Settings.signupURL)
+        account = input("회원가입 할 테스트 계정을 입력해 주세요 : ")                                                       
         time.sleep(Settings.sec)
     
         try:

@@ -9,7 +9,7 @@ class TC_login_Class():
         print('로그인 테스트 시작!')
         driver.get(Settings.loginURL)
         try:
-            driver.find_element(By.NAME, 'email').send_keys(Settings.consoleid)
+            driver.find_element(By.NAME, 'email').send_keys(Settings.console_id)
             driver.find_element(By.NAME, 'password').send_keys(Settings.password)
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()
             time.sleep(Settings.sec)
@@ -22,12 +22,12 @@ class TC_login_Class():
                 Settings.failcount = Settings.failcount + 1
         except:
             print('요소를 찾을 수 없어 로그인 실패')
+        print("passcount :", Settings.passcount)
+        print("failcount :", Settings.failcount)
+        driver.quit()
+        print('로그인 테스트 종료!')
         
-        finally:
-            print("passcount :", Settings.passcount)
-            print("failcount :", Settings.failcount)
-            driver.quit()
-            print('로그인 테스트 종료!')
+        return
 
 # loginTest = TC_login_Class()
 # loginTest.def_login()
