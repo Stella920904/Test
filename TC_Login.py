@@ -24,10 +24,10 @@ class TC_login_Class():
             print('요소를 찾을 수 없어 로그인 실패')
         print("passcount :", Settings.passcount)
         print("failcount :", Settings.failcount)
-        driver.quit()
+        # driver.quit()
         print('로그인 테스트 종료!')
         
-        return
+    
 
 # loginTest = TC_login_Class()
 # loginTest.def_login()
