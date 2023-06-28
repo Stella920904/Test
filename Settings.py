@@ -1,12 +1,12 @@
-class settings:
+class Settings:
 
     #login info
     consoleid = 'auto_kade3@stclab.com'
     password = 'qwe123!!'
 
     # PASS / FAIL count info
-    Passcount = 0
-    FailCount = 0
+    passcount = 0
+    failcount = 0
 
     #sleep 시간
     sec = 1
@@ -22,11 +22,11 @@ class settings:
     signCount = 1
     
     #URL info
-    loginurl = "https://qa-console.surffy-dev.io/ko/signin/"
-    basic = "https://qa-console.surffy-dev.io/ko/byol/console/product/nf/65/controls/basic/default"
+    loginURL = "https://qa-console.surffy-dev.io/ko/signin/"
+    basicURL = "https://qa-console.surffy-dev.io/ko/byol/console/product/nf/65/controls/basic/default"
     segURL = "http://heart.stclab.com:5002/"
 
-    signupurl = "https://qa-console.surffy-dev.io/ko/signup"
+    signupURL = "https://qa-console.surffy-dev.io/ko/signup"
 
     #N번째 회원가입 
     num = 3

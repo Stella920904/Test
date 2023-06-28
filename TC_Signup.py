@@ -9,12 +9,11 @@ from Modules import *
 # 브라우저 실행 및 탭 추가
 
 class TC_Signup_Class():
-    
-    def SignupDef():
-        account = input("테스트 계정을 입력해 주세요 : ")
+    def signup_def():
         driver = webdriver.Chrome(ChromeDriverManager().install())
-        driver.get(settings.signupurl)                                                                                                    # 콘솔 url 회원가입 페이지 열기         #  회원가입 클릭
-        time.sleep(settings.sec)
+        driver.get(Settings.signupurl)
+        account = input("회원가입 할 테스트 계정을 입력해 주세요 : ")                                                                                                 
+        time.sleep(Settings.sec)
     
         try:
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[2]/button').click()                   # 국가
@@ -22,38 +21,38 @@ class TC_Signup_Class():
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/button').click()                   # 지역
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/ul/li/button').click()             # 서울 선택
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[3]/div[2]/input').click()                    # 이메일 영역 선택
-            time.sleep(settings.sec)
+            time.sleep(Settings.sec)
 
             # 이메일 명을 string 으로 반환
-            # emailArr = f"auto_kade{settings.num+1}@stclab.com"
+            # emailArr = f"auto_kade{Settings.num+1}@stclab.com"
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[3]/div[2]/input').send_keys(account)         # 이메일 입력
-            # nameArr = f"auto_kade{settings.num+1}@stclab.com"
+            # nameArr = f"auto_kade{Settings.num+1}@stclab.com"
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[4]/div[2]/input').send_keys(account)          # 이름 입력
-            # comName = f"auto_kade{settings.num+1}@stclab.com"              
+            # comName = f"auto_kade{Settings.num+1}@stclab.com"              
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[5]/div[2]/input').send_keys(account)          # 회사명 입력
-            time.sleep(settings.sec)
+            time.sleep(Settings.sec)
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[6]/div[2]/input').click()                    # 비밀번호 입력영역 선택
             emailPW1 = 'qwe123!!'
-            time.sleep(settings.sec)                                                                                                               # 비밀번호 qwe123!! 로 설정
+            time.sleep(Settings.sec)                                                                                                               # 비밀번호 qwe123!! 로 설정
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[6]/div[2]/input').send_keys(emailPW1)        # 비밀번호 입력
-            time.sleep(settings.sec)
+            time.sleep(Settings.sec)
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[7]/div[2]/input').click()                    # 비밀번호 확인 입력영역 선택
             emailPW2 = 'qwe123!!'
-            time.sleep(settings.sec)                                                                                                               # 비밀번호와 동일하게 설정
+            time.sleep(Settings.sec)                                                                                                               # 비밀번호와 동일하게 설정
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[7]/div[2]/input').send_keys(emailPW2)        # 비밀번호 확인 입력
-            time.sleep(settings.sec)
+            time.sleep(Settings.sec)
             driver.find_element(By.XPATH, '//*[@id="terms"]').click()                                                                     # 동의하기 선택
-            time.sleep(settings.sec)
+            time.sleep(Settings.sec)
             driver.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()                                     # 회원가입 버튼 클릭
             time.sleep(5)
             if driver.current_url == 'https://qa-console.surffy-dev.io/ko/home':
-                print('로그인 성공')
-                settings.Passcount = settings.Passcount + 1
+                print('회원가입 성공')
+                Settings.passcount = Settings.passcount + 1
             else:
-                print('로그인 실패')
-                settings.FailCount = settings.FailCount + 1
+                print('회원가입 실패')
+                Settings.failcount = Settings.failcount + 1
         except:
-            print('요소를 찾을 수 없어 로그인 실패')
-        print("PassCount :", settings.Passcount)
-        print("FailCount :", settings.FailCount)
+            print('요소를 찾을 수 없어 회원가입 실패')
+        print("passcount :", Settings.passcount)
+        print("failcount :", Settings.failcount)
         driver.quit()

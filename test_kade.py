@@ -5,5 +5,5 @@ from Modules import *
 # chrome_options.add_argument('--start-maximized')
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
-driver.get(settings.loginurl)
+driver.get(Settings.loginurl)
 time.sleep(5)

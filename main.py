@@ -1,23 +1,22 @@
 from TC_Login import TC_login_Class
-from CommonLogin import CommonloginClass
 from TC_NF_Plan_FreeTrialStart import TC_NF_Plan_FreeTrialStart_Class
 from TC_Signup import TC_Signup_Class
 
-def LoginTest():
+def login_test():
     login = TC_login_Class
-    login.LoginDef()
+    login.login_def()
 
-def FreetrialTest():
+def freetrial_test():
     Freetrial = TC_NF_Plan_FreeTrialStart_Class
-    Freetrial.FreetrialStartDef()
-def SignupTest():
+    Freetrial.freetrialstart_def()
+def signup_test():
     Signuptest = TC_Signup_Class
-    Signuptest.SignupDef()
+    Signuptest.signup_def()
 
 
 if __name__ == "__main__":
-    # SignupTest()
-    # LoginTest()
-    FreetrialTest()
+    # signup_test()
+    login_test()
+    # freetrial_test()
 
 

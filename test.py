@@ -1,3 +1,4 @@
-print("6월 16일")
-print("6월 23일 스텔라 코드 가져왔지롱~~")
-print("6월 23일 스텔라 코드 진짜 가져왔지롱~~")
+from WebDriver import get_chrome_driver
+
+
+dirver = get_chrome_driver()
