@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 from browser_setup import browser
 import os
 
-
-
 # 환경 변수 불러오기 (테스트 세팅값 불러오기)
 load_dotenv()
 test_login_url = os.getenv("LOGIN_URL")
@@ -18,14 +16,18 @@ test_login_pw = os.getenv("LOGIN_PW")
 test_signup_url = os.getenv("SIGNUP_URL")
 
 
+
 # 재사용되는 페이지들 !!
 # scope가 모듈일 경우 모듈 단위로 재사용함.
+
+# 로그인 함수 호출
 @pytest.fixture(scope="module")
+@pytest.mark.run(order=3)
 def browser_with_login(browser):
     console_url = test_login_url
     login_id = test_login_id
     login_pw = test_login_pw
-
+    
     browser.get(console_url)
     browser.find_element(By.NAME, 'email').send_keys(login_id)
     browser.find_element(By.NAME, 'password').send_keys(login_pw)
@@ -33,15 +35,18 @@ def browser_with_login(browser):
     time.sleep(3)
     yield browser
 
-
+# nf 메인 진입 함수 호출
 @pytest.fixture(scope="module")
+@pytest.mark.run(order=3)
 def browser_with_nfmain(browser_with_login):
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]').click()
     time.sleep(3)
     yield browser_with_login
 
 
+# 회원가입 함수 호출
 @pytest.fixture(scope="module")
+@pytest.mark.run(order=1)
 def browser_with_signup(browser):
     console_url = test_signup_url
     login_id = test_login_id
@@ -68,6 +73,9 @@ def browser_with_signup(browser):
     browser.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()                                     # 회원가입 버튼 클릭
     time.sleep(3)
     yield browser
+
+
+
 
 
 # 아래는 테스트 관련 설정!!
