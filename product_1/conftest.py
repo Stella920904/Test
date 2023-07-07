@@ -22,12 +22,11 @@ test_signup_url = os.getenv("SIGNUP_URL")
 
 # 로그인 함수 호출
 @pytest.fixture(scope="module")
-@pytest.mark.run(order=3)
 def browser_with_login(browser):
     console_url = test_login_url
     login_id = test_login_id
     login_pw = test_login_pw
-    
+
     browser.get(console_url)
     browser.find_element(By.NAME, 'email').send_keys(login_id)
     browser.find_element(By.NAME, 'password').send_keys(login_pw)
@@ -37,16 +36,28 @@ def browser_with_login(browser):
 
 # nf 메인 진입 함수 호출
 @pytest.fixture(scope="module")
-@pytest.mark.run(order=3)
 def browser_with_nfmain(browser_with_login):
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]').click()
+    time.sleep(3)
+    yield browser_with_login
+
+# mf 메인 > 프로젝트 생성
+@pytest.fixture(scope="module")
+def browser_with_nfmain(browser_with_login):
+    browser_with_login.get("https://qa-console.surffy-dev.io/ko/console/product/nf/home")
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[4]/div[1]/div[2]/button').click()
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[3]/div[2]/input').send_key("stclab.com")
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/div[2]/input').send_key("api")
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()
     time.sleep(3)
     yield browser_with_login
 
 
 # 회원가입 함수 호출
 @pytest.fixture(scope="module")
-@pytest.mark.run(order=1)
 def browser_with_signup(browser):
     console_url = test_signup_url
     login_id = test_login_id
@@ -74,8 +85,20 @@ def browser_with_signup(browser):
     time.sleep(3)
     yield browser
 
+#Surffy 메인 시작
+@pytest.fixture(scope="module")
+def browser_with_surffymain(browser_with_login):
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]/button').click()
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="modal"]/div[2]/div[3]/button').click()
+    time.sleep(600)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]').click()
+    time.sleep(3)
+    yield browser_with_login
 
 
+
+#
 
 
 # 아래는 테스트 관련 설정!!

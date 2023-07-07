@@ -10,5 +10,6 @@ def browser():
     
     driver = webdriver.Chrome(ChromeDriverManager().install())
     yield driver
-    
+
+
     driver.quit()
