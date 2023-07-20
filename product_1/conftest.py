@@ -73,27 +73,30 @@ def browser_with_nfmain(browser_with_login):
     yield browser_with_login
 
 # mf 메인 > 프로젝트 생성
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="module")
 def browser_with_createproject(browser_with_login):
     browser_with_login.get("https://qa-console.surffy-dev.io/ko/console/product/nf/home")
     time.sleep(1)
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[4]/div[1]/div[2]/button').click()
     time.sleep(1)
-    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[3]/div[2]/input').send_keys("stclab.com")
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[3]/div[2]/input').send_keys("stclab.com4")
     time.sleep(1)
-    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/div[2]/input').send_keys("api")
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/div[2]/input').send_keys("api4")
     time.sleep(1)
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()
     time.sleep(3)
-    yield browser_with_createproject
+    yield browser_with_login
 
+@pytest.fixture(scope="module")
 # 에이전트 설치 스크립트
-@pytest.fixture(scope="function")
-def browser_with_installagent(browser_with_createproject):
-    browser_with_createproject.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[3]/div[2]/div[1]').click()
-    browser_with_createproject.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[3]/div[3]/button').click()
-    browser_with_createproject.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[4]/button[2]').click()
-    yield browser_with_createproject
+def browser_with_installagent(browser_with_login):
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[3]/div[2]/div[1]').click()
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[3]/div[3]/button').click()
+    time.sleep(1)
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[4]/button[2]').click()
+    time.sleep(1)
+    yield browser_with_login
 
 
 # 회원가입 함수 호출
@@ -135,10 +138,6 @@ def browser_with_surffymain(browser_with_login):
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div/div[3]/div[2]').click()
     time.sleep(3)
     yield browser_with_login
-
-
-
-#
 
 
 # 아래는 테스트 관련 설정!!
