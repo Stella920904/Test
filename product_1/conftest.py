@@ -34,16 +34,17 @@ def custom_sort_key_function(item):
     # 원하는 방식으로 item을 비교하여 정렬하기 위한 정렬 키를 반환하는 함수를 작성합니다
     module_name = item.parent.name  # 테스트 파일의 이름
     test_name = item.name  # 테스트 함수/메서드의 이름
-    if test_name == "test_case_2_1":
+    # if test_name == "test_case_2_1":
+    if "test_signup" in module_name and test_name.startswith("test_case_2_1"):    
         return 1
     elif "test_createproject" in module_name and test_name.startswith("test_case_1"):
-        return 2
-    elif "test_nfmain" in module_name and test_name.startswith("test_case_1"):
-        return 3
-    elif "test_login" in module_name and test_name.startswith("test_case_1"):
-        return 4
-    elif "test_freetrialstart" in module_name and test_name.startswith("test_case_1"):
         return 5
+    elif "test_nfmain" in module_name and test_name.startswith("test_case_1"):
+        return 4
+    elif "test_login" in module_name and test_name.startswith("test_case_1"):
+        return 2
+    elif "test_freetrialstart" in module_name and test_name.startswith("test_case_1"):
+        return 3
     else:
         return 0
 
@@ -79,9 +80,9 @@ def browser_with_createproject(browser_with_login):
     time.sleep(1)
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/div[4]/div[1]/div[2]/button').click()
     time.sleep(1)
-    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[3]/div[2]/input').send_keys("stclab.com4")
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[1]/div[3]/div[2]/input').send_keys("stclab.com")
     time.sleep(1)
-    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/div[2]/input').send_keys("api4")
+    browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/div/div[2]/div[2]/div[2]/input').send_keys("api")
     time.sleep(1)
     browser_with_login.find_element(By.XPATH, '//*[@id="root"]/div/main/div/div/div/form/button').click()
     time.sleep(3)
